@@ -57,7 +57,11 @@ void setup() {
 // This function runs over and over, and is where you do the magic to light
 // your leds.
 void loop() {
+  doLogic();
   delay(15000);
+}
+
+void doLogic() {
   getBuildStatus(buildStatus);
   Serial.println("Status is: " + String(buildStatus));
 
@@ -65,9 +69,9 @@ void loop() {
     Serial.println("Green");
     setColor(CRGB::Green);
   }
-  else if(buildStatus == 'F') {
+  else if (buildStatus == 'F') {
     Serial.println("Error");
-    setColor(CRGB(100,0,100));
+    setColor(CRGB(100, 0, 100));
   }
   else {
     Serial.println("Red");
