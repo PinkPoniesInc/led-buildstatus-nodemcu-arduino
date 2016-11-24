@@ -41,7 +41,7 @@ void setup() {
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
 
-  setBlue();
+  setColor(CRGB::Blue);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
@@ -51,27 +51,27 @@ void setup() {
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
-  setOrange();
+  setColor(CRGB::Orange);
 }
 
 // This function runs over and over, and is where you do the magic to light
 // your leds.
 void loop() {
-  delay(5000);
+  delay(15000);
   getBuildStatus(buildStatus);
   Serial.println("Status is: " + String(buildStatus));
 
   if (buildStatus == 'G') {
     Serial.println("Green");
-    setGreen();
+    setColor(CRGB::Green);
   }
   else if(buildStatus == 'F') {
     Serial.println("Error");
-    setPurple();
+    setColor(CRGB(100,0,100));
   }
   else {
     Serial.println("Red");
-    setRed();
+    setColor(CRGB::Red);
   }
 }
 
@@ -106,37 +106,9 @@ void getBuildStatus(char &result) {
 }
 
 
-void setBlue() {
+void setColor(CRGB color) {
   for (int i = 0; i < NUM_LEDS; i++) {
-    leds[i] = CRGB::Blue;
-  }
-  FastLED.show();
-}
-
-void setGreen() {
-  for (int i = 0; i < NUM_LEDS; i++) {
-    leds[i] = CRGB::Green;
-  }
-  FastLED.show();
-}
-
-void setRed() {
-  for (int i = 0; i < NUM_LEDS; i++) {
-    leds[i] = CRGB::Red;
-  }
-  FastLED.show();
-}
-
-void setOrange() {
-  for (int i = 0; i < NUM_LEDS; i++) {
-    leds[i] = CRGB::Orange;
-  }
-  FastLED.show();
-}
-
-void setPurple() {
-    for (int i = 0; i < NUM_LEDS; i++) {
-    leds[i] = CRGB(100, 0, 100);
+    leds[i] = color;
   }
   FastLED.show();
 }
