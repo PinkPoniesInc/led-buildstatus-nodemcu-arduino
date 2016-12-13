@@ -5,7 +5,7 @@
 #include "FastLED.h"
 
 const char* ssid     = "AltGuest";
-const char* password = "Welcome@Altran";
+const char* password = "P@ssKeepSecreT";
 const char* host = "www.kfk4ever.com";
 const char* url = "http://www.kfk4ever.com/~griffon26/buildlightstatus.txt";
 
